@@ -1,14 +1,16 @@
 package ua.com.foxmided.carmanager;
 
+import java.util.Objects;
+
 public class Motorcycle {
 	String name;
 	int yearOfProdaction;
 	int price;
 	int weight;
-	String color;
+	Color color;
 	String engineType;
     boolean isReadyToDrive;
-	public Motorcycle(String name, int yearOfProdaction, int price, int weight, String color, String engineType,
+	public Motorcycle(String name, int yearOfProdaction, int price, int weight, Color color, String engineType,
 			boolean isReadyToDrive) {
 		super();
 		this.name = name;
@@ -25,5 +27,23 @@ public class Motorcycle {
 				+ weight + ", color=" + color + ", engineType=" + engineType + ", isReadyToDrive=" + isReadyToDrive
 				+ "]";
 	}
+	// створення методу equals для порівняння обєктів класу
+	@Override
+	public int hashCode() {
+		return Objects.hash(color, isReadyToDrive);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Motorcycle other = (Motorcycle) obj;
+		return color == other.color && isReadyToDrive == other.isReadyToDrive;
+	}
+	
+	
     
 }
